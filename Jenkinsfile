@@ -28,7 +28,7 @@ node('master') {
         sh '''
             
            
-           sudo terraform apply terraform.tfplan -input=false
+           sudo terraform apply terraform.tfplan -no-color -auto-approve
         '''
     }
 
