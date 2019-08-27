@@ -6,7 +6,6 @@ node('master') {
 		        sudo su
                         cd /home/inspector-code
                         sudo rm -rf * 
-                        sudo rm -rf /home/inspector-code/Inspector
                         sudo mkdir -p /home/inspector-code
 			cd /home/inspector-code
 			sudo git clone https://github.com/Shrashthi/Inspector.git
