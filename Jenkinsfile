@@ -28,7 +28,7 @@ node('master') {
         sh '''
             
            
-            terraform apply terraform.tfplan
+           sudo terraform apply terraform.tfplan -input=false
         '''
     }
 
