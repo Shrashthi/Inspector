@@ -17,7 +17,7 @@ node('master') {
     stage('plan') {
         sh '''
             
-            cd /home/clone/Inspector/
+            cd /home/inspector-code/Inspector
             
             sudo export AWS_DEFAULT_REGION=us-east-1
 			
