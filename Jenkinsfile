@@ -31,7 +31,7 @@ node('master') {
         sh '''
             
            sudo cd /home/inspector-code/Inspector/
-           sudo terraform apply -auto-approve terraform.tfplan
+           sudo terraform apply -auto-approve "terraform.tfplan"
         '''
     }
 
