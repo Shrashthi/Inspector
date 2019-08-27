@@ -8,7 +8,7 @@ node('master') {
 			cd /home/inspector-code
 			sudo git clone https://github.com/Shrashthi/Inspector.git
 			cd Inspector/
-            sudo chmod -R 755 /home/clone/Inspector/
+            sudo chmod -R 755 /home/inspector-code/Inspector
             sudo terraform --version
             sudo terraform init
         '''
