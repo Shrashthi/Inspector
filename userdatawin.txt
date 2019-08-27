@@ -1,0 +1,51 @@
+<powershell>
+
+$UserAccount = Get-LocalUser -Name "Administrator"
+$password1 = "ZcyBYfJ8n3r&CRW"
+$SecurePassword1=ConvertTo-SecureString $password1 –asplaintext –force
+$UserAccount | Set-LocalUser -Password $SecurePassword1
+
+$username = "admin"
+$password = "Z-=BYfJ8n3>r&CRW"
+$SecurePassword=ConvertTo-SecureString $password –asplaintext –force
+New-LocalUser $username -Password $SecurePassword -FullName "Third User" -Description "Description of this account."
+Add-LocalGroupMember -Group "Administrators" -Member $username
+
+#Winrm configure
+
+winrm quickconfig -q
+winrm set winrm/config/winrs ‘@{MaxMemoryPerShellMB=”300″}’
+winrm set winrm/config ‘@{MaxTimeoutms=”1800000″}’
+winrm set winrm/config/service ‘@{AllowUnencrypted=”true”}’
+winrm set winrm/config/service/auth ‘@{Basic=”true”}’
+net stop winrm
+sc.exe config winrm start=auto
+net start winrm
+
+
+# Stop firewall
+
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+Start-Sleep -s 10
+
+# Install inspector agent
+
+New-Item -Path "c:\" -Name "inspector" -ItemType "directory"
+$url = "https://inspector-agent.amazonaws.com/windows/installer/latest/AWSAgentInstall.exe"
+$outpath = "C:\inspector\AWSAgentInstall.exe"
+Invoke-WebRequest -Uri $url -OutFile $outpath
+Start-Process -Wait -FilePath "C:\inspector\AWSAgentInstall.exe" -ArgumentList '/S','/v','/qn' -passthru
+
+### Patching ##
+
+set-executionpolicy unrestricted -Force
+Start-Sleep -s 10
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Start-Sleep -s 10
+Install-Module -Name PSWindowsUpdate -Force
+Start-Sleep -s 20
+Import-Module PSWindowsUpdate 
+Start-Sleep -s 05
+Get-WindowsUpdate -Install -AcceptALL -AutoReboot
+Get-WUHistory >> C:\updates.txt
+</powershell>
