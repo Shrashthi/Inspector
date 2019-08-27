@@ -4,7 +4,7 @@ node('master') {
     stage('prep') {
         sh '''
 		        sudo su
-                        mkdir /home/inspector-code
+                        sudo mkdir -p /home/inspector-code
 			cd /home/inspector-code
 			git clone https://github.com/Shrashthi/Inspector.git
 			cd Inspector/
