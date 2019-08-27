@@ -4,7 +4,8 @@ node('master') {
     stage('prep') {
         sh '''
 		        sudo su
-                        
+                        cd /home/inspector-code
+                        sudo rm -rf * 
                         sudo rm -rf /home/inspector-code/Inspector
                         sudo mkdir -p /home/inspector-code
 			cd /home/inspector-code
@@ -30,7 +31,7 @@ node('master') {
         sh '''
             
            sudo cd /home/inspector-code/Inspector/
-           sudo terraform apply -no-color -auto-approve
+           sudo terraform apply -auto-approve terraform.tfplan
         '''
     }
 
