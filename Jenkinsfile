@@ -33,12 +33,12 @@ node('master') {
     }
 
 
-    catch (e) {
-        currentBuild.result = "FAILURE"
-        throw e
+#    catch (e) {
+ #       currentBuild.result = "FAILURE"
+  #      throw e
 
-    } finally {
-        result = currentBuild.result ?: "SUCCESS"
-        previousResult = currentBuild.previousBuild?.result
-    }
+   # } finally {
+    #    result = currentBuild.result ?: "SUCCESS"
+     #   previousResult = currentBuild.previousBuild?.result
+   # }
 }
