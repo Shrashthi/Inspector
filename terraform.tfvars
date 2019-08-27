@@ -1,3 +1,4 @@
+region = "us-east-1"
 accesskey = "AKIASOZSCKP6YKGW6HCD"
 secretkey = "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"
 AMI_linux = "ami-0b898040803850657"
