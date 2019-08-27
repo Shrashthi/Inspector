@@ -6,11 +6,11 @@ node('master') {
 		        sudo su
                         sudo mkdir -p /home/inspector-code
 			cd /home/inspector-code
-			git clone https://github.com/Shrashthi/Inspector.git
+			sudo git clone https://github.com/Shrashthi/Inspector.git
 			cd Inspector/
-            chmod -R 755 /home/clone/Inspector/
-            terraform --version
-            terraform init
+            sudo chmod -R 755 /home/clone/Inspector/
+            sudo terraform --version
+            sudo terraform init
         '''
     }
 
@@ -19,9 +19,9 @@ node('master') {
             
             cd /home/clone/Inspector/
             
-            export AWS_DEFAULT_REGION=us-east-1
+            sudo export AWS_DEFAULT_REGION=us-east-1
 			
-            terraform plan -out terraform.tfplan -input=false
+            sudo terraform plan -out terraform.tfplan -input=false
         '''
     }
 
