@@ -3,7 +3,6 @@ node('master') {
   
     stage('prep') {
         sh '''
-                        sudo su
 		        mkdir /home/inspector-code
 			cd /home/inspector-code
 			git clone https://github.com/Shrashthi/Inspector.git
