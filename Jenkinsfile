@@ -21,6 +21,7 @@ node('master') {
             
 			
             sudo terraform plan -out terraform.tfplan -input=false
+            sudo chmod -R 755 /home/inspector-code/Inspector
         '''
     }
 
