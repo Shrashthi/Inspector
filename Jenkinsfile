@@ -19,7 +19,6 @@ node('master') {
             
             cd /home/inspector-code/Inspector
             
-            sudo export AWS_DEFAULT_REGION=us-east-1
 			
             sudo terraform plan -out terraform.tfplan -input=false
         '''
