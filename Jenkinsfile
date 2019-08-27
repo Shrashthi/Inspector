@@ -4,6 +4,8 @@ node('master') {
     stage('prep') {
         sh '''
 		        sudo su
+                        
+                        sudo rm -rf /home/inspector-code/Inspector
                         sudo mkdir -p /home/inspector-code
 			cd /home/inspector-code
 			sudo git clone https://github.com/Shrashthi/Inspector.git
@@ -27,8 +29,8 @@ node('master') {
     stage('apply') {
         sh '''
             
-           
-           sudo terraform apply terraform.tfplan -no-color -auto-approve
+           sudo cd /home/inspector-code/Inspector/
+           sudo terraform apply -no-color -auto-approve
         '''
     }
 
